@@ -1,0 +1,27 @@
+name: hw1
+
+on:
+  push
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 2
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ ubuntu-22.04, windows-2022, macos-14 ]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: setup go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache-dependency-path: ./go.sum
+      - name: dependencies
+        working-directory: ./
+        run: go mod tidy
+      - name: test
+        working-directory: ./
+        run: go test -v ./...
