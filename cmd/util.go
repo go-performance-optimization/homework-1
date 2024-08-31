@@ -26,7 +26,7 @@ func getRootDirectory(wd string) (string, error) {
 			}
 		}
 
-		if currentDir == "/" {
+		if currentDir == string(os.PathSeparator) || currentDir == "." {
 			return "", fmt.Errorf("invariant error: cmd directory not found")
 		}
 
