@@ -5,8 +5,8 @@ run: build
 
 build: init-binary-names
 	go mod tidy
-	go build -o ./bin/${SERVER_BINARY_NAME} ./cmd/server/server.go
-	go build -o ./bin/${WATCHDOG_BINARY_NAME} ./cmd/watchdog/watchdog.go
+	go build -o ./bin/${SERVER_BINARY_NAME} ./cmd/server
+	go build -o ./bin/${WATCHDOG_BINARY_NAME} ./cmd/watchdog
 
 init-binary-names:
 ifeq (${OS},Windows_NT)
